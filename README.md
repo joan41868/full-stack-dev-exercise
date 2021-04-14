@@ -1,16 +1,22 @@
-## Project description
+# Project description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+* This is an interview project. It uses:
+* Nest.js - progressive typescript web framework for node.js
+* MongoDB - document oriented NoSQL database
+* Mongoose - ORM for Mongo
+* React - frontend framework
+* Redux - ?
 
 ## Installation
 
 ```bash
-$ npm install
+$ npm install # in api/ and app/
 ```
 
-## Running the app
+## Running the api
 
 ```bash
+
 # development
 $ npm run start
 
@@ -20,8 +26,15 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 
+```
+
+## Running the whole project
+
+```bash
+
 # docker
 $ docker-compose build && docker-compose up
+
 ```
 
 ## Test
