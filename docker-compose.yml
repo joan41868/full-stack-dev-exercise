@@ -1,0 +1,35 @@
+version: '2'
+
+services: 
+
+    app:
+        build:
+            context: .
+            dockerfile: api/Dockerfile
+        container_name: app
+        restart: always
+        depends_on: 
+            - test-mongo
+        networks: 
+            - app_network
+        ports:
+            - "80:3000"
+        environment:
+            - PORT=3000
+            - dbConnString='mongodb://test-mongo:27017/'
+
+    test-mongo:
+        image: mongo:latest
+        # environment:
+            # - MONGO_INITDB_ROOT_USERNAME=root
+            # - MONGO_INITDB_ROOT_PASSWORD=rootpassword
+            # - MONGO_INITDB_DATABASE=admin
+        ports:
+            - "27017:27017"
+        networks: 
+            - app_network
+        container_name: test-mongo
+
+networks: 
+    app_network:
+        driver: bridge
