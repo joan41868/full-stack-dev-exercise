@@ -40,6 +40,18 @@ describe('UserController', () => {
 		expect(resp.message).toBe('OK');
 	});
 
+	it('shouldSignUpAndActivate', async()=>{
+		const newUser = new CreateUserDTO();
+		newUser.email = 'test@mail.com';
+		newUser.username = 'testusername';
+		newUser.isAccountActivated = false;
+		const resp = await controller.signUp(newUser);
+		expect(resp.accountConfirmationLink).toBeDefined();
+		const activationResp = await controller.activate(resp.confirmationCode);
+		expect(activationResp).toBeDefined();
+		expect(activationResp.message).toBe("OK");
+	})
+
 	afterAll(async () => {
 		await closeInMongodConnection();
 	});

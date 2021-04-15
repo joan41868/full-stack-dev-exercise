@@ -49,7 +49,6 @@ describe('UserService', () => {
 		};
 		const result = await service.createUser(user);
 		expect(result).toBeDefined();
-		user.username = 'username';
 		const result2 = await service.createUser(user);
 		expect(result2.message).toBe('FAILED');
 	});
