@@ -5,7 +5,7 @@
 * **MongoDB** - document oriented NoSQL database
 * **Mongoose** - ORM for Mongo
 * **React** - frontend framework
-* **Redux** - ?
+* **Redux** - state manager
 * **MongoMemoryServer** - used for testing.
 
 # Api (Backend)
