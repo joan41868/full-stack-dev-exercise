@@ -1,10 +1,10 @@
 import { CreateUserDTO } from './Dto/User.dto';
-import { closeInMongodConnection } from './../helper/mongooseTestHelper';
+import { closeInMongodConnection } from '../helper/MongoTestUtil';
 import { UserService } from './user.service';
 import { UserSchema } from './Schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { rootMongooseTestModule } from '../helper/mongooseTestHelper';
+import { rootMongooseTestModule } from '../helper/MongoTestUtil';
 import { UserController } from './user.controller';
 
 describe('UserController', () => {
