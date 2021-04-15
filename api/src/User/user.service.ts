@@ -7,31 +7,74 @@ import { User } from './interface/User';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+	constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
-  public async createUser(model: CreateUserDTO): Promise<User> {
-    model.confirmationCode = crypto
-      .createHash('sha256')
-      .update(model.email)
-      .digest('hex');
+	public async createUser(
+		model: CreateUserDTO,
+	): Promise<{ message: string; user: User; reason: string }> {
+		if (!model.email || !model.username) {
+			return {
+				message: 'FAILED',
+				reason: 'Missing required property email/username',
+				user: undefined,
+			};
+		}
 
-    model.isAccountActivated = false;
-    try {
-      const user: User = new this.userModel(model);
-      return await user.save();
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  }
+		model.confirmationCode = crypto
+			.createHash('sha256')
+			.update(model.email)
+			.digest('hex');
 
-  public async activateAccount(code: string) {
-    const user = await this.userModel.findOne({ confirmationCode: code });
-    if (user) {
-      user.isAccountActivated = true;
-      return await user.save();
-    } else {
-      return null;
-    }
-  }
+		model.isAccountActivated = false;
+		try {
+			const user: User = new this.userModel(model);
+			const savedUser = await user.save();
+			return {
+				message: 'OK',
+				user: savedUser,
+				reason: undefined,
+			};
+		} catch (err) {
+			return {
+				message: 'FAILED',
+				reason: 'User with the same email/username already exists',
+				user: undefined,
+			};
+		}
+	}
+
+	public async activateAccount(
+		code: string,
+	): Promise<{
+		message: string;
+		user: User;
+	}> {
+		const user = await this.userModel.findOne({
+			confirmationCode: code,
+		});
+		if (user) {
+			if (!user.isAccountConfirmed) {
+				user.isAccountConfirmed = true;
+				const updatedUser = await user.save();
+				// await this.userModel.updateOne(
+				// 	{ _id: user._id },
+				// 	{ $set: { isAccountConfirmed: true } },
+				// );
+				return {
+					message: 'OK',
+					user: updatedUser,
+				};
+			} else {
+				return {
+					message: 'User already active',
+					user: undefined,
+				};
+			}
+		} else {
+			return {
+				message: 'User not found',
+				user: undefined,
+			};
+		}
+	}
 }

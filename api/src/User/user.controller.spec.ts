@@ -1,3 +1,5 @@
+import { CreateUserDTO } from './Dto/User.dto';
+import { closeInMongodConnection } from './../helper/mongooseTestHelper';
 import { UserService } from './user.service';
 import { UserSchema } from './Schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -6,23 +8,39 @@ import { rootMongooseTestModule } from '../helper/mongooseTestHelper';
 import { UserController } from './user.controller';
 
 describe('UserController', () => {
-  let controller: UserController;
+	let controller: UserController;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      imports: [
-        rootMongooseTestModule(),
-        MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]),
-      ],
-      providers: [UserService],
-      controllers:[UserController]
-    }).compile();
+	beforeEach(async () => {
+		const module: TestingModule = await Test.createTestingModule({
+			imports: [
+				rootMongooseTestModule(),
+				MongooseModule.forFeature([
+					{ name: 'User', schema: UserSchema },
+				]),
+			],
+			providers: [UserService],
+			controllers: [UserController],
+		}).compile();
 
-    controller = module.get<UserController>(UserController);
-  });
+		const svc = module.get<UserService>(UserService);
+		controller = new UserController(svc);
+	});
 
+	it('should be defined', () => {
+		expect(controller).toBeDefined();
+	});
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
+	it('shouldSignUpProperly', async () => {
+		const newUser = new CreateUserDTO();
+		newUser.email = 'test@mail.com';
+		newUser.username = 'testusername';
+		newUser.isAccountActivated = false;
+		const resp = await controller.signUp(newUser);
+		expect(resp).toBeDefined();
+		expect(resp.message).toBe('OK');
+	});
+
+	afterAll(async () => {
+		await closeInMongodConnection();
+	});
 });
