@@ -8,6 +8,13 @@ import {
 } from '../helper/MongoTestUtil';
 import { UserService } from './user.service';
 
+
+async function sleep(time){
+	return new Promise((resolve, reject)=>{
+		setTimeout(resolve, time);
+	});
+}
+
 describe('UserService', () => {
 	let service: UserService;
 
@@ -49,6 +56,9 @@ describe('UserService', () => {
 		};
 		const result = await service.createUser(user);
 		expect(result).toBeDefined();
+
+		await sleep(3000);
+
 		const result2 = await service.createUser(user);
 		expect(result2.message).toBe('FAILED');
 	});

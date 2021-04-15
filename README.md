@@ -6,7 +6,7 @@
 * Mongoose - ORM for Mongo
 * React - frontend framework
 * Redux - ?
-
+* MongoMemoryServer - used for testing.
 ## Installation
 
 ```bash
@@ -44,6 +44,9 @@ $ docker-compose build && docker-compose up
 $ npm run test
 ```
 
+## Note
+
+Because of the MongoMemoryServer, the duplicateUser test may fail once in 3-4-5 runs. Please re-run it it fails.
 ## License
 
 Nest is [MIT licensed](LICENSE).
