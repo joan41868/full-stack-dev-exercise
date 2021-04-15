@@ -5,7 +5,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import {
 	closeInMongodConnection,
 	rootMongooseTestModule,
-} from '../helper/mongooseTestHelper';
+} from '../helper/MongoTestUtil';
 import { UserService } from './user.service';
 
 describe('UserService', () => {
