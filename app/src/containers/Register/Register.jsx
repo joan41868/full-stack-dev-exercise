@@ -20,7 +20,7 @@ import { formValidation } from "../../services/validationService";
 export default function SignUp() {
   const dispatch = useDispatch();
   /** Access store  */
-  const { email } = useSelector((state) => state.register);
+  const { email,registerErrorMessage } = useSelector((state) => state.register);
 
   
 
@@ -74,15 +74,24 @@ export default function SignUp() {
       setErrorMessage(isNotValid);
     } else {
       dispatch(registerUser(userName, emailAddress, password.pass));
-      if(email){
-        setEmailAddress()
-        setUsername()
-        setErrorMessage()
-      }
+      //Clear fields
+      setEmailAddress("")
+      setUsername("")
+      setPassword({ pass: "", repPass: "" })
+      setErrorMessage("")
+      
     }
   };
-
-  if (!email) {
+  
+  if (email || registerErrorMessage) {
+    return (
+      <div className="register-wrapper">
+        <Container className="container-wrapper" component="main" maxWidth="xs">
+          <ConformationScreen email={email} />
+        </Container>
+      </div>
+    );
+  } else {
     return (
       <div className="register-wrapper">
         <Container className="container-wrapper" component="main" maxWidth="xs">
@@ -170,14 +179,6 @@ export default function SignUp() {
               </form>
             </div>
           </div>
-        </Container>
-      </div>
-    );
-  } else {
-    return (
-      <div className="register-wrapper">
-        <Container className="container-wrapper" component="main" maxWidth="xs">
-          <ConformationScreen email={email} />
         </Container>
       </div>
     );

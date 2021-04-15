@@ -40,6 +40,7 @@ function* createUser(api, username, emailAddress, password) {
       )
     );
   } catch (error) {
-    yield put(registerError(error));
+    yield put(registerError("Acount already exist"));
+
   }
 }

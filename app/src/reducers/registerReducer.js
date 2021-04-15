@@ -6,7 +6,7 @@ export const initialState = {
   email: "",
   userName: "",
   confirmationCode: "",
-  registerError: "",
+  registerErrorMessage: "",
 };
 
 /** Register reducer.
@@ -25,7 +25,7 @@ function registerReducer(state = initialState, action) {
         email: action.payload.email,
         userName: action.payload.username,
         confirmationCode: action.payload.confirmationCode,
-        registerError: "",
+        registerErrorMessage: "",
       };
 
     /** Action Creator - register failed
@@ -37,7 +37,7 @@ function registerReducer(state = initialState, action) {
         email: "",
         userName: "",
         confirmationCode: "",
-        registerError: action.payload.reason,
+        registerErrorMessage: action.payload,
       };
 
     default:
