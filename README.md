@@ -46,7 +46,7 @@ $ npm run test
 
 ## Note
 
-Because of the MongoMemoryServer, the duplicateUser test may fail once in 3-4-5 runs. Please re-run it it fails.
+Because of the MongoMemoryServer, the duplicateUser test may fail once in 3-4-5 runs. Please re-run if it fails.
 ## License
 
 Nest is [MIT licensed](LICENSE).
