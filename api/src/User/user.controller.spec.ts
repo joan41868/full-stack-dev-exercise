@@ -35,6 +35,7 @@ describe('UserController', () => {
 		newUser.email = 'test@mail.com';
 		newUser.username = 'testusername';
 		newUser.isAccountActivated = false;
+		newUser.password = "test";
 		const resp = await controller.signUp(newUser);
 		expect(resp).toBeDefined();
 		expect(resp.message).toBe('OK');
@@ -45,6 +46,7 @@ describe('UserController', () => {
 		newUser.email = 'test@mail.com';
 		newUser.username = 'testusername';
 		newUser.isAccountActivated = false;
+		newUser.password = "test";
 		const resp = await controller.signUp(newUser);
 		expect(resp.accountConfirmationLink).toBeDefined();
 		const activationResp = await controller.activate(resp.confirmationCode);

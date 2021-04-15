@@ -20,6 +20,10 @@ export const UserSchema = new Schema({
 		type: Boolean,
 		$exists: true,
 	},
+	password:{
+		type: String,
+		$exists: true
+	}
 });
 
 export const UserModel = model('User', UserSchema);

@@ -42,6 +42,7 @@ describe('UserService', () => {
 			confirmationCode: '',
 			isAccountActivated: false,
 			username: 'somename',
+			password: 'test'
 		};
 		const result = await service.createUser(user);
 		expect(result).toBeDefined();
@@ -53,6 +54,7 @@ describe('UserService', () => {
 			confirmationCode: '',
 			isAccountActivated: false,
 			username: 'somename',
+			password: 'test'
 		};
 		const result = await service.createUser(user);
 		expect(result).toBeDefined();

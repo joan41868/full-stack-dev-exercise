@@ -3,6 +3,7 @@ export class CreateUserDTO {
 	public isAccountActivated: boolean;
 	public confirmationCode: string;
 	public username: string;
+	public password: string;
 }
 
 export class UserCreatedDTO extends CreateUserDTO {

@@ -4,7 +4,7 @@ import * as crypto from 'crypto';
 import { Model } from 'mongoose';
 import { CreateUserDTO } from './Dto/User.dto';
 import { User } from './interface/User';
-
+import * as bcrypt from 'bcrypt';
 @Injectable()
 export class UserService {
 	constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
@@ -13,10 +13,10 @@ export class UserService {
 		model: CreateUserDTO,
 	): Promise<{ message: string; user: User; reason: string }> {
 		// TODO json validator?
-		if (!model.email || !model.username) {
+		if (!model.email || !model.username || !model.password) {
 			return {
 				message: 'FAILED',
-				reason: 'Missing required property email/username',
+				reason: 'Missing required property email/username/password',
 				user: undefined,
 			};
 		}
@@ -27,6 +27,8 @@ export class UserService {
 			.digest('hex');
 
 		model.isAccountActivated = false;
+
+		model.password = bcrypt.hashSync(model.password, 10);
 		try {
 			const user: User = new this.userModel(model);
 			const savedUser = await user.save();

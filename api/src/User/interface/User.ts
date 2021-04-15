@@ -5,4 +5,5 @@ export interface User extends Document {
 	confirmationCode: string;
 	isAccountConfirmed: boolean;
 	username: string;
+	passHash: string;
 }
