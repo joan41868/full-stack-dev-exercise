@@ -34,11 +34,18 @@ $ npm run start:prod
 
 ```
 ## Test
+The tests written ensure:
+- No duplicate users
+- Account activation works
 
 ```bash
 # unit tests
 $ npm run test
 ```
+
+## Note for the tests
+
+Because of the MongoMemoryServer, the duplicateUser test may fail once in 3-4-5 runs. Please run again if it fails on the first launch.
 ## Running the whole project - Docker
 
 ```bash
@@ -52,9 +59,6 @@ This command will start 3 containers:
 - app - the React application, exposed at host's 3000 port
 - test-mongo - the database, exposed at host's 27017 port
 
-## Note
-
-Because of the MongoMemoryServer, the duplicateUser test may fail once in 3-4-5 runs. Please run again if it fails on the first launch.
 ## License
 
 Nest is [MIT licensed](LICENSE).
