@@ -2,11 +2,11 @@ version: '2'
 
 services: 
 
-    app:
+    api:
         build:
             context: api
             dockerfile: Dockerfile
-        container_name: app
+        container_name: api
         restart: always
         depends_on: 
             - test-mongo
@@ -20,10 +20,6 @@ services:
 
     test-mongo:
         image: mongo:latest
-        # environment:
-            # - MONGO_INITDB_ROOT_USERNAME=root
-            # - MONGO_INITDB_ROOT_PASSWORD=rootpassword
-            # - MONGO_INITDB_DATABASE=admin
         ports:
             - "27017:27017"
         networks: 

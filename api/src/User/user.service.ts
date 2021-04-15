@@ -12,6 +12,7 @@ export class UserService {
 	public async createUser(
 		model: CreateUserDTO,
 	): Promise<{ message: string; user: User; reason: string }> {
+		// TODO json validator?
 		if (!model.email || !model.username) {
 			return {
 				message: 'FAILED',
@@ -37,7 +38,7 @@ export class UserService {
 		} catch (err) {
 			return {
 				message: 'FAILED',
-				reason: 'User with the same email/username already exists',
+				reason: 'Account already exists',
 				user: undefined,
 			};
 		}
