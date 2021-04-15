@@ -1,10 +1,10 @@
 import { CreateUserDTO } from './Dto/User.dto';
-import { closeInMongodConnection } from '../helper/MongoTestUtil';
+import { closeMongod } from '../helper/MongoTestUtil';
 import { UserService } from './user.service';
 import { UserSchema } from './Schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
-import { rootMongooseTestModule } from '../helper/MongoTestUtil';
+import { rootMongooseTest } from '../helper/MongoTestUtil';
 import { UserController } from './user.controller';
 
 describe('UserController', () => {
@@ -13,7 +13,7 @@ describe('UserController', () => {
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
-				rootMongooseTestModule(),
+				rootMongooseTest(),
 				MongooseModule.forFeature([
 					{ name: 'User', schema: UserSchema },
 				]),
@@ -53,6 +53,6 @@ describe('UserController', () => {
 	})
 
 	afterAll(async () => {
-		await closeInMongodConnection();
+		await closeMongod();
 	});
 });

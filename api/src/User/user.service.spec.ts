@@ -3,8 +3,8 @@ import { UserSchema } from './Schemas/user.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import {
-	closeInMongodConnection,
-	rootMongooseTestModule,
+	closeMongod,
+	rootMongooseTest,
 } from '../helper/MongoTestUtil';
 import { UserService } from './user.service';
 
@@ -21,7 +21,7 @@ describe('UserService', () => {
 	beforeEach(async () => {
 		const module: TestingModule = await Test.createTestingModule({
 			imports: [
-				rootMongooseTestModule(),
+				rootMongooseTest(),
 				MongooseModule.forFeature([
 					{ name: 'User', schema: UserSchema },
 				]),
@@ -64,6 +64,6 @@ describe('UserService', () => {
 	});
 
 	afterAll(async () => {
-		await closeInMongodConnection();
+		await closeMongod();
 	});
 });

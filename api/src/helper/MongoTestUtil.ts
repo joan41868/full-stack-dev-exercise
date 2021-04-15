@@ -3,7 +3,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongod: MongoMemoryServer;
 
-export const rootMongooseTestModule = (options: MongooseModuleOptions = {}) => MongooseModule.forRootAsync({
+export const rootMongooseTest = (options: MongooseModuleOptions = {}) => MongooseModule.forRootAsync({
   useFactory: async () => {
     mongod = new MongoMemoryServer();
     const mongoUri = await mongod.getUri();
@@ -14,7 +14,7 @@ export const rootMongooseTestModule = (options: MongooseModuleOptions = {}) => M
   },
 });
 
-export const closeInMongodConnection = async () => {
+export const closeMongod = async () => {
   if (mongod) {
     await mongod.stop();
   }
