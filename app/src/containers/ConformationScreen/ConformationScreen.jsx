@@ -4,10 +4,10 @@ import { useDispatch,useSelector } from "react-redux";
 import { registerError } from "../Register/actions";
 
 import "./ConformationScreen.scss";
-export default function ConformationScreen() {
+export default function ConformationScreen({ email }) {
   const dispatch = useDispatch();
     /** Access store  */
-    const { registerErrorMessage,email } = useSelector((state) => state.register);
+    const { registerErrorMessage, mail } = useSelector((state) => state.register);
     return (
     <div className="conformation-wrapper">
       {registerErrorMessage ?  <div> Acount already exist</div>: <>
