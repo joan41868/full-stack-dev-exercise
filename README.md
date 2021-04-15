@@ -51,8 +51,13 @@ Because of the MongoMemoryServer, the duplicateUser test may fail once in 3-4-5 
 Nest is [MIT licensed](LICENSE).
 
 
-# App
-
+# App (Frontend)
+Start the frontend:
+```bash
+cd app
+npm i
+npm start
+```
 
 # Running the whole project - Docker
 
@@ -63,7 +68,6 @@ $ docker-compose build && docker-compose up
 
 ```
 
-This command will start 3 containers:
+This command will start 2 containers:
 - api - the Nest.js application, exposed at host's 80 port
-- app - the React application, exposed at host's 3000 port
 - test-mongo - the database, exposed at host's 27017 port

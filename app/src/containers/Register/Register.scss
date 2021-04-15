@@ -1,0 +1,68 @@
+.register-wrapper {
+  .container-wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: unset;
+    .div-wrapper {
+      padding-top: 1px;
+      .paper {
+        background: #ffffff;
+        width: 360px;
+        padding-top: 5px;
+        border-radius: 12px;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1),
+          0px 4px 8px rgba(0, 0, 0, 0.08), 0px 1px 12px rgba(0, 0, 0, 0.04);
+        .form-container {
+          display: flex;
+          justify-content: center;
+        }
+        .button-wrapper {
+          text-align: center;
+          padding: 20px 0px;
+          position: relative;
+          button {
+            color: #0e4da4;
+            border: 1px solid #0e4da4;
+            text-transform: capitalize;
+            border-radius: 8px;
+          }
+        }
+        .form-title {
+          margin: 10px 0px;
+          text-align: center;
+          font-family: "Inter";
+          font-weight: 600;
+          font-size: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
+
+  .errorMessage {
+    width: 100%;
+    color: red;
+    padding: 0px;
+    margin: 0px;
+    position: absolute;
+    font-size: 12px;
+    text-align: center;
+  }
+}
+
+fieldset.MuiOutlinedInput-notchedOutline {
+  border-color: #263238 !important;
+  border: 2px solid;
+  border-radius: 8px;
+}
+label.MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl {
+  color: #263238 !important;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+}
