@@ -72,6 +72,6 @@ This command will start 2 containers:
 - api - the Nest.js application, exposed at host's 80 port
 - test-mongo - the database, exposed at host's 27017 port
 
-## Connect to docker-mongo:
+## Connect to docker MongoDB:
 
 - Download mongodb-compass app and use the default uri (mongodb://localhost:27017/)
