@@ -33,8 +33,13 @@ $ npm run start:dev
 $ npm run start:prod
 
 ```
+## Test
 
-## Running the whole project
+```bash
+# unit tests
+$ npm run test
+```
+## Running the whole project - Docker
 
 ```bash
 
@@ -42,13 +47,10 @@ $ npm run start:prod
 $ docker-compose build && docker-compose up
 
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-```
+This command will start 3 containers:
+- api - the Nest.js application, exposed at host's 80 port
+- app - the React application, exposed at host's 3000 port
+- test-mongo - the database, exposed at host's 27017 port
 
 ## Note
 
