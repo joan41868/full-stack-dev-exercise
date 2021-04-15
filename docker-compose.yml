@@ -4,8 +4,8 @@ services:
 
     app:
         build:
-            context: .
-            dockerfile: api/Dockerfile
+            context: api
+            dockerfile: Dockerfile
         container_name: app
         restart: always
         depends_on: 
